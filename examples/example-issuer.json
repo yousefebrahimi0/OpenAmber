@@ -1,0 +1,28 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://openamber.eu/ns/v1"
+  ],
+  "type": "IssuerProfile",
+  "id": "https://childfocus.be/.well-known/openamber",
+  "name": "Child Focus",
+  "country": "BE",
+  "organizationType": "hotline",
+  "website": "https://childfocus.be",
+  "contact": "openamber@childfocus.be",
+  "phone": "+3211600",
+  "description":  "Child Focus is the Belgian Foundation for Missing and Sexually Exploited Children. We operate the 116 000 missing children hotline in Belgium and coordinate with European partners through Missing Children Europe.",
+  "publicKey": {
+    "id": "https://childfocus.be/.well-known/openamber/keys/1",
+    "type": "Ed25519VerificationKey2020",
+    "controller": "https://childfocus.be/.well-known/openamber",
+    "publicKeyMultibase": "z6Mkf5rGMoatrSj1f8YgskctZmfDrMRAoKLLuzLjfjHzbXMz",
+    "created": "2026-01-01T00:00:00Z",
+    "revoked": null
+  },
+  "vouches": [
+    "https://missingchildreneurope.eu/. well-known/openamber/vouches/childfocus-be. json"
+  ],
+  "created":  "2026-01-01T00:00:00Z",
+  "updated": "2026-01-15T10:00:00Z"
+}
