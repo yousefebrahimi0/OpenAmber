@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://openamber.eu/ns/v1"
+  ],
+  "type": "IssuerVouch",
+  "id": "https://missingchildreneurope.eu/. well-known/openamber/vouches/childfocus-be.json",
+  "issuer": {
+    "id": "https://childfocus.be/.well-known/openamber",
+    "name": "Child Focus",
+    "country": "BE",
+    "type": "hotline"
+  },
+  "vouchedBy": {
+    "id": "https://missingchildreneurope.eu/.well-known/openamber",
+    "name": "Missing Children Europe",
+    "country": "EU"
+  },
+  "vouchedAt": "2026-01-01T00:00:00Z",
+  "validUntil": "2027-01-01T00:00:00Z",
+  "scope": [
+    "issue_alerts",
+    "relay_alerts"
+  ],
+  "notes": "Child Focus is a founding member of Missing Children Europe and operates the official 116 000 hotline in Belgium.",
+  "signature": {
+    "type": "Ed25519Signature2020",
+    "created": "2026-01-01T00:00:00Z",
+    "verificationMethod": "https://missingchildreneurope.eu/. well-known/openamber/keys/1",
+    "signatureValue": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..EXAMPLE_VOUCH_SIGNATURE_HERE"
+  }
+}
