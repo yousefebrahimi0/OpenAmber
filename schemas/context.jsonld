@@ -1,0 +1,130 @@
+{
+  "@context":  {
+    "@version": 1.1,
+    "openamber": "https://openamber.eu/ns/v1#",
+    "schema": "https://schema.org/",
+    "sec": "https://w3id.org/security#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    
+    "MissingChildAlert": "openamber:MissingChildAlert",
+    "AlertResolution": "openamber: AlertResolution",
+    "AlertRevocation": "openamber: AlertRevocation",
+    "IssuerProfile": "openamber:IssuerProfile",
+    "IssuerVouch":  "openamber:IssuerVouch",
+    
+    "issuer": {
+      "@id": "openamber:issuer",
+      "@type": "@id"
+    },
+    "subject": {
+      "@id": "openamber:subject",
+      "@type": "@id"
+    },
+    "lastSeen": {
+      "@id": "openamber:lastSeen",
+      "@type": "@id"
+    },
+    "contactInfo": {
+      "@id": "openamber:contactInfo",
+      "@type": "@id"
+    },
+    
+    "givenName": "schema:givenName",
+    "familyName": "schema:familyName",
+    "age": {
+      "@id": "openamber:age",
+      "@type": "xsd:integer"
+    },
+    "gender": "schema:gender",
+    "physicalDescription": "openamber:physicalDescription",
+    "photoHash": "openamber:photoHash",
+    "photoUrl": {
+      "@id": "openamber:photoUrl",
+      "@type": "@id"
+    },
+    "clothingDescription": "openamber:clothingDescription",
+    
+    "description": "schema:description",
+    "coordinates": {
+      "@id": "openamber:coordinates",
+      "@container": "@list"
+    },
+    "timestamp": {
+      "@id": "openamber:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "country": "openamber:country",
+    "region": "openamber:region",
+    
+    "created": {
+      "@id": "openamber:created",
+      "@type": "xsd:dateTime"
+    },
+    "expires": {
+      "@id": "openamber:expires",
+      "@type": "xsd:dateTime"
+    },
+    "urgencyLevel": "openamber:urgencyLevel",
+    "languageCode": "openamber:languageCode",
+    "circumstances": "openamber:circumstances",
+    
+    "alertId": {
+      "@id": "openamber:alertId",
+      "@type": "@id"
+    },
+    "resolution": "openamber:resolution",
+    "resolvedAt": {
+      "@id": "openamber:resolvedAt",
+      "@type": "xsd:dateTime"
+    },
+    "reason": "openamber:reason",
+    "revokedAt": {
+      "@id": "openamber:revokedAt",
+      "@type": "xsd:dateTime"
+    },
+    
+    "vouchedBy": {
+      "@id": "openamber:vouchedBy",
+      "@type": "@id"
+    },
+    "vouchedAt": {
+      "@id":  "openamber:vouchedAt",
+      "@type": "xsd:dateTime"
+    },
+    "validUntil": {
+      "@id": "openamber:validUntil",
+      "@type": "xsd:dateTime"
+    },
+    "vouches": {
+      "@id":  "openamber:vouches",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    
+    "publicKey": {
+      "@id":  "sec:publicKey",
+      "@type": "@id"
+    },
+    "Ed25519VerificationKey2020": "sec:Ed25519VerificationKey2020",
+    "Ed25519Signature2020": "sec:Ed25519Signature2020",
+    "publicKeyMultibase": "sec: publicKeyMultibase",
+    "signature": {
+      "@id": "sec: signature",
+      "@type": "@id"
+    },
+    "signatureValue": "sec:signatureValue",
+    "verificationMethod": {
+      "@id": "sec: verificationMethod",
+      "@type": "@id"
+    },
+    "controller": {
+      "@id": "sec: controller",
+      "@type": "@id"
+    },
+    "revoked": {
+      "@id":  "openamber:revoked",
+      "@type": "xsd:dateTime"
+    },
+    "revocationReason": "openamber:revocationReason"
+  }
+}
