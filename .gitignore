@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+vendor/
+. pnpm-store/
+
+# Build outputs
+dist/
+build/
+*.min.js
+*.min.css
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE/Editor
+.idea/
+.vscode/
+*. swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Database files
+*.db
+*.sqlite
+
+# Keys (never commit!)
+*.pem
+*.key
+private/
+keys/
+
+# Docker
+docker-compose.override.yml
