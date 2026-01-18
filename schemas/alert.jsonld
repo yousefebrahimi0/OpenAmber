@@ -1,0 +1,427 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openamber.eu/schemas/alert.json",
+  "title": "OpenAmber Missing Child Alert",
+  "description":  "Schema for cryptographically signed missing child alerts",
+  "type": "object",
+  "required": [
+    "@context",
+    "type",
+    "id",
+    "issuer",
+    "subject",
+    "created",
+    "expires",
+    "signature"
+  ],
+  "properties":  {
+    "@context": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "const": "https://openamber.eu/ns/v1"
+      },
+      "description": "JSON-LD context, must include OpenAmber namespace"
+    },
+    "type": {
+      "const": "MissingChildAlert",
+      "description": "Alert type identifier"
+    },
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^urn:openamber:alert:[A-Z]{2}-[0-9]{4}-[0-9]{5,}$",
+      "description": "Unique identifier in format urn:openamber:alert:{country}-{year}-{sequence}"
+    },
+    "issuer": {
+      "$ref": "#/$defs/issuerReference",
+      "description": "Organization that created and signed the alert"
+    },
+    "subject": {
+      "$ref": "#/$defs/subjectDescription",
+      "description": "Information about the missing child"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when alert was created"
+    },
+    "expires": {
+      "type":  "string",
+      "format":  "date-time",
+      "description": "ISO 8601 timestamp when alert should be removed (max 30 days from creation)"
+    },
+    "lastSeen": {
+      "$ref": "#/$defs/locationEvent",
+      "description": "Last known location and time the child was seen"
+    },
+    "contactInfo": {
+      "$ref": "#/$defs/contactInfo",
+      "description": "How to report sightings or information"
+    },
+    "circumstances": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Brief description of disappearance circumstances"
+    },
+    "companionDescription": {
+      "type": "string",
+      "maxLength":  300,
+      "description": "Description of person child may be with (if applicable)"
+    },
+    "vehicleDescription": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Vehicle description if applicable"
+    },
+    "urgencyLevel": {
+      "type":  "string",
+      "enum": ["critical", "high", "standard"],
+      "default": "standard",
+      "description": "Alert urgency level affecting distribution priority"
+    },
+    "languageCode": {
+      "type": "string",
+      "pattern": "^[a-z]{2}$",
+      "description": "ISO 639-1 language code for alert content"
+    },
+    "translations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/translation"
+      },
+      "description": "Translations of alert content in other languages"
+    },
+    "signature": {
+      "$ref": "#/$defs/signature",
+      "description": "Cryptographic signature from issuer"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "issuerReference": {
+      "type": "object",
+      "required": ["id", "name", "country"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "description": "Issuer's OpenAmber profile URL"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Organization name"
+        },
+        "country": {
+          "type":  "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "ISO 3166-1 alpha-2 country code"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["police", "hotline", "ngo", "government"],
+          "description": "Type of issuing organization"
+        }
+      },
+      "additionalProperties": false
+    },
+    "subjectDescription": {
+      "type": "object",
+      "required": ["givenName", "age", "physicalDescription"],
+      "properties": {
+        "givenName": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Child's first name"
+        },
+        "familyName": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Child's surname (may be withheld for privacy)"
+        },
+        "age": {
+          "type":  "integer",
+          "minimum":  0,
+          "maximum":  17,
+          "description": "Age in years"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of birth (optional, for age verification)"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "other", "unknown"],
+          "description":  "Gender for identification purposes"
+        },
+        "physicalDescription": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Height, hair color, eye color, distinguishing features"
+        },
+        "height": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 30,
+              "maximum": 220
+            },
+            "unit": {
+              "type": "string",
+              "enum": ["cm", "in"],
+              "default": "cm"
+            }
+          },
+          "description": "Height measurement"
+        },
+        "weight": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 150
+            },
+            "unit":  {
+              "type": "string",
+              "enum": ["kg", "lb"],
+              "default": "kg"
+            }
+          },
+          "description": "Weight measurement"
+        },
+        "hairColor": {
+          "type":  "string",
+          "enum":  ["black", "brown", "blonde", "red", "gray", "white", "other"],
+          "description": "Hair color"
+        },
+        "eyeColor": {
+          "type":  "string",
+          "enum":  ["brown", "blue", "green", "hazel", "gray", "other"],
+          "description": "Eye color"
+        },
+        "distinguishingFeatures": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Birthmarks, scars, tattoos, or other identifying features"
+        },
+        "photoHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "SHA-256 hash of official photo"
+        },
+        "photoUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to retrieve photo from issuer's secure server"
+        },
+        "clothingDescription": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "What child was wearing when last seen"
+        },
+        "accessories": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Glasses, jewelry, backpack, or other accessories"
+        },
+        "nationality": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "ISO 3166-1 alpha-2 country code of nationality"
+        },
+        "spokenLanguages": {
+          "type": "array",
+          "items": {
+            "type":  "string",
+            "pattern": "^[a-z]{2}$"
+          },
+          "description":  "ISO 639-1 language codes of languages child speaks"
+        }
+      },
+      "additionalProperties": false
+    },
+    "locationEvent": {
+      "type": "object",
+      "required": ["description", "timestamp"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Human-readable location description"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "[latitude, longitude] in WGS84 format"
+        },
+        "accuracy": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Location accuracy in meters"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When child was last seen at this location"
+        },
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "ISO 3166-1 alpha-2 country code"
+        },
+        "region": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Administrative region, state, or province"
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "City or municipality name"
+        },
+        "postalCode": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "Postal or ZIP code"
+        },
+        "locationType": {
+          "type":  "string",
+          "enum":  [
+            "residence",
+            "school",
+            "public_transport",
+            "shopping_center",
+            "park",
+            "street",
+            "other"
+          ],
+          "description": "Type of location"
+        }
+      },
+      "additionalProperties": false
+    },
+    "contactInfo": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "pattern": "^\\+[0-9]{1,15}$",
+          "description":  "Contact phone number in E.164 format"
+        },
+        "altPhone": {
+          "type":  "string",
+          "pattern":  "^\\+[0-9]{1,15}$",
+          "description": "Alternative phone number"
+        },
+        "email":  {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email address"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to alert details page"
+        },
+        "emergencyNumber": {
+          "type": "string",
+          "pattern": "^[0-9]{3}$",
+          "description": "Local emergency number (e.g., 112, 911)"
+        },
+        "instructions": {
+          "type": "string",
+          "maxLength":  500,
+          "description":  "Instructions for public on how to respond"
+        },
+        "availableHours": {
+          "type":  "string",
+          "maxLength": 100,
+          "description": "Hours when contact is available (if not 24/7)"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z]{2}$"
+          },
+          "description":  "Languages supported by contact center"
+        }
+      },
+      "additionalProperties": false
+    },
+    "translation": {
+      "type": "object",
+      "required": ["languageCode"],
+      "properties": {
+        "languageCode": {
+          "type": "string",
+          "pattern": "^[a-z]{2}$",
+          "description": "ISO 639-1 language code"
+        },
+        "physicalDescription": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "clothingDescription": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "circumstances": {
+          "type": "string",
+          "maxLength":  500
+        },
+        "instructions": {
+          "type": "string",
+          "maxLength":  500
+        },
+        "locationDescription": {
+          "type":  "string",
+          "maxLength": 300
+        }
+      },
+      "additionalProperties": false
+    },
+    "signature": {
+      "type": "object",
+      "required": ["type", "created", "verificationMethod", "signatureValue"],
+      "properties": {
+        "type": {
+          "const": "Ed25519Signature2020",
+          "description": "Signature algorithm identifier"
+        },
+        "created": {
+          "type":  "string",
+          "format":  "date-time",
+          "description": "Timestamp when signature was created"
+        },
+        "verificationMethod": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to issuer's public key for verification"
+        },
+        "signatureValue": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9+/=._-]+$",
+          "description":  "Base64-encoded Ed25519 signature"
+        },
+        "proofPurpose": {
+          "type": "string",
+          "enum": ["assertionMethod", "authentication"],
+          "default": "assertionMethod",
+          "description":  "Purpose of the proof"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
