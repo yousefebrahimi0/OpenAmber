@@ -1,0 +1,23 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://openamber.eu/ns/v1"
+  ],
+  "type": "AlertResolution",
+  "id":  "urn:openamber: resolution:BE-2026-00142-S1",
+  "alertId":  "urn:openamber: alert:BE-2026-00142",
+  "resolution": "found_safe",
+  "resolvedAt": "2026-01-16T10:30:00Z",
+  "summary": "Emma has been found safe.  Thank you to everyone who helped share the alert.",
+  "issuer": {
+    "id": "https://childfocus.be/.well-known/openamber",
+    "name": "Child Focus",
+    "country": "BE"
+  },
+  "signature": {
+    "type": "Ed25519Signature2020",
+    "created": "2026-01-16T10:30:00Z",
+    "verificationMethod": "https://childfocus.be/.well-known/openamber/keys/1",
+    "signatureValue": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..EXAMPLE_RESOLUTION_SIGNATURE_HERE"
+  }
+}
