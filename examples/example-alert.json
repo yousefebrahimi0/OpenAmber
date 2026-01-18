@@ -1,0 +1,47 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://openamber.eu/ns/v1"
+  ],
+  "type": "MissingChildAlert",
+  "id": "urn:openamber:alert:BE-2026-00142",
+  "issuer": {
+    "id": "https://childfocus.be/. well-known/openamber",
+    "name": "Child Focus",
+    "country": "BE",
+    "type": "hotline"
+  },
+  "subject": {
+    "givenName": "Emma",
+    "age": 8,
+    "gender": "female",
+    "physicalDescription":  "Brown hair, blue eyes, approximately 125cm tall, slim build",
+    "photoHash":  "sha256:a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456",
+    "photoUrl": "https://childfocus.be/alerts/BE-2026-00142/photo.jpg",
+    "clothingDescription": "Red winter jacket, blue jeans, white sneakers, pink backpack"
+  },
+  "lastSeen": {
+    "description": "Brussels Central Station, near platform 3",
+    "coordinates":  [50.8453, 4.3570],
+    "timestamp": "2026-01-15T14:30:00Z",
+    "country": "BE",
+    "region": "Brussels-Capital"
+  },
+  "contactInfo": {
+    "phone": "+3211600",
+    "email": "tips@childfocus.be",
+    "website": "https://childfocus.be/alert/BE-2026-00142",
+    "instructions": "If you see Emma, do not approach.  Call 116 000 immediately or contact local police. Do not share on social media without verification."
+  },
+  "circumstances": "Emma was last seen at Brussels Central Station after school.  She did not board her usual train home. She may be traveling alone or with an unknown adult.",
+  "urgencyLevel": "critical",
+  "languageCode":  "en",
+  "created": "2026-01-15T15:45:00Z",
+  "expires": "2026-01-22T15:45:00Z",
+  "signature": {
+    "type": "Ed25519Signature2020",
+    "created": "2026-01-15T15:45:00Z",
+    "verificationMethod": "https://childfocus.be/. well-known/openamber/keys/1",
+    "signatureValue":  "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19.. EXAMPLE_SIGNATURE_BASE64_ENCODED_HERE_REPLACE_WITH_ACTUAL_SIGNATURE"
+  }
+}
