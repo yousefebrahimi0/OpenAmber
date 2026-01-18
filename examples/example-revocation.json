@@ -1,0 +1,23 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://openamber.eu/ns/v1"
+  ],
+  "type": "AlertRevocation",
+  "id":  "urn:openamber: revocation:BE-2026-00142-R1",
+  "alertId": "urn:openamber:alert:BE-2026-00142",
+  "reason": "issued_in_error",
+  "explanation": "Alert was issued based on miscommunication.  Child was with authorized family member.",
+  "revokedAt": "2026-01-15T17:30:00Z",
+  "issuer": {
+    "id":  "https://childfocus.be/.well-known/openamber",
+    "name": "Child Focus",
+    "country": "BE"
+  },
+  "signature": {
+    "type": "Ed25519Signature2020",
+    "created": "2026-01-15T17:30:00Z",
+    "verificationMethod": "https://childfocus.be/.well-known/openamber/keys/1",
+    "signatureValue": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..EXAMPLE_REVOCATION_SIGNATURE_HERE"
+  }
+}
